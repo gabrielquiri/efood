@@ -11,7 +11,7 @@ const bodyContainer = {
 
 const Home = () => (
   <>
-    <Header />
+    <Header tipo='home'/>
     <Container direction="column" customStyle={ bodyContainer }>
         <Container direction="row">
           <RestaurantsList />

@@ -1,42 +1,31 @@
-import { useParams, useNavigate } from 'react-router-dom'
-
-import NavBar from '../../containers/NavBar'
-import Footer from "../../containers/Footer"
-import { Banner, BannerContainer} from './style'
+import { Banner, BannerText } from './style'
 
 import { db } from '../../service/dbStatics'
 
-const style = {
-  width: '100%', 
-  maxWidth: '1024px', 
-  margin: '0 auto',
-  display: 'flex',
-  justifyContent: 'space-between'
-}
+import Header from '../../containers/Header'
+import Footer from '../../containers/Footer'
+import Container from '../../containers/Container'
+import Plates from '../../containers/PlatesList'
 
 const Perfil = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  console.log(parseInt(`${id}`))
-  if(id !== undefined){
-    const restaurante = db.find(r => r.id !== undefined ? parseInt(`${id}`) : 0)
-    return (
-      <div>
-        <NavBar />
-        <Banner img={restaurante?.image ? restaurante?.image : ''}>
-          <div className="container">
-            <div><p>{restaurante?.cuisine}</p></div>
-            <div><p><span>{restaurante?.name}</span></p></div>
-          </div>
-        </Banner>
-        <h1>{restaurante?.name}</h1>
-        <Footer />
-      </div>
-    ) 
-  }
-  else {
-    navigate('/')
-  }
+  const restaurante = db.find(r => r.id === 1)
+  return (<>
+    <Header tipo='perfil'/>
+    <Banner img={restaurante?.image}>
+      <Container direction='column' customStyle={{
+        width: '100%',
+        maxWidth: '1024px',
+        height: '100%',
+        margin: '0 auto',
+        justifyContent: 'space-between'
+      }}>
+        <BannerText>{restaurante?.cuisine}</BannerText>
+        <BannerText><span>{restaurante?.name}</span></BannerText>
+      </Container>
+    </Banner>
+    <Plates items={restaurante?.plates}/>
+    <Footer />
+  </>)
 }
 
 export default Perfil

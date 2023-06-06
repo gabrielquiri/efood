@@ -3,8 +3,9 @@ import Plates from "../models/Plates"
 
 import Image1 from '../assets/imagem_restaurant_1.png'
 import Image2 from '../assets/imagem_restaurant_2.png'
+import ImagePrato from '../assets/imagem_restaurant_prato.png'
 
-const prato = new Plates(1, 'Pizza Marguerita', 'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!')
+const prato = new Plates(1, 'Pizza Marguerita', 'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!', ImagePrato)
 
 export const db = [
   new Restaurants(

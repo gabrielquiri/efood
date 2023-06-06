@@ -6,11 +6,8 @@ export const FooterComponent = styled.div`
   background-color: ${colors.colorWhite};
   color: ${colors.colorDark};
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
-  gap: 16px;
 `
 
 export const SocialContainer = styled.div`
