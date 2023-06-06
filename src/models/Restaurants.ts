@@ -2,6 +2,7 @@ import Plates from './Plates';
 
 class Restaurants {
   id: number
+  image?: string
   name: string
   description: string
   rate: number
@@ -10,17 +11,19 @@ class Restaurants {
   plates: Plates[]
 
   constructor(
-    id: number, 
+    id: number,
     nome: string,
     descricao: string,
     avaliacao: number,
     cozinha: string,
     destaque: boolean,
-    pratos: Plates[]
+    pratos: Plates[],
+    image?: string
   ) {
     this.id = id;
     this.name = nome;
     this.description = descricao;
+    this.image = image;
     this.rate = avaliacao;
     this.cuisine = cozinha;
     this.emphasis = destaque;

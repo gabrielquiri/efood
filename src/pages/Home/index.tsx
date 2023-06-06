@@ -1,4 +1,7 @@
 import Container from "../../containers/Container"
+import Header from '../../containers/Header'
+import RestaurantsList from '../../containers/RestaurantsList'
+import Footer from '../../containers/Footer'
 
 const bodyContainer = {
   innerWidth: "100%",
@@ -7,12 +10,15 @@ const bodyContainer = {
 }
 
 const Home = () => (
-  <Container direction="column" customStyle={ bodyContainer }>
-      <Container direction="row">
-        <h1>Home</h1>
-        <p>This is the Home page</p>
-      </Container>
-  </Container>
+  <>
+    <Header tipo='home'/>
+    <Container direction="column" customStyle={ bodyContainer }>
+        <Container direction="row">
+          <RestaurantsList />
+        </Container>
+    </Container>
+    <Footer />
+  </>
 )
 
 export default Home
