@@ -1,15 +1,26 @@
-class Plates {
+class Plate {
   id: number
-  name: string
-  description: string
-  image?: string
+  nome: string
+  descricao: string
+  foto: string
+  preco: number
+  porcao: string
 
-  constructor(id: number, nome: string, descricao: string, image?: string){
+  constructor(
+      id: number, 
+      nome: string, 
+      descricao: string,
+      foto: string, 
+      preco: number,
+      porcao: string
+    ){
     this.id = id;
-    this.name = nome;
-    this.description = descricao;
-    this.image = image;
+    this.nome = nome;
+    this.descricao = descricao;
+    this.foto = foto;
+    this.preco = preco;
+    this.porcao = porcao
   }
 }
 
-export default Plates
+export default Plate

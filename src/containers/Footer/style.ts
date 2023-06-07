@@ -8,6 +8,13 @@ export const FooterComponent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+  }
 `
 
 export const SocialContainer = styled.div`

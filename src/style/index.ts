@@ -19,6 +19,12 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${colors.bgColor};
   }
+
+  .container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 export default GlobalStyle

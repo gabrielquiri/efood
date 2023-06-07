@@ -7,7 +7,7 @@ import ErrorPage from './pages/ErrorPage'
 const Router = () => (
   <Routes>
     <Route path="/" element={<HomePage />} errorElement={<ErrorPage />}/>
-    <Route path="/restaurant/:id" Component={PerfilPage} errorElement={<ErrorPage />}/>
+    <Route path="/restaurant/:id" element={<PerfilPage />} errorElement={<ErrorPage />}/>
   </Routes>
 )
 

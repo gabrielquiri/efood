@@ -1,33 +1,33 @@
-import Plates from './Plates';
+import Plate from './Plates';
 
 class Restaurants {
   id: number
-  image?: string
-  name: string
-  description: string
-  rate: number
-  cuisine: string
-  emphasis: boolean
-  plates: Plates[]
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: Plate[]
 
   constructor(
     id: number,
-    nome: string,
-    descricao: string,
+    titulo: string,
+    destacado: boolean,
+    tipo: string,
     avaliacao: number,
-    cozinha: string,
-    destaque: boolean,
-    pratos: Plates[],
-    image?: string
+    descricao: string,
+    capa: string,
+    cardapio: Plate[]
   ) {
     this.id = id;
-    this.name = nome;
-    this.description = descricao;
-    this.image = image;
-    this.rate = avaliacao;
-    this.cuisine = cozinha;
-    this.emphasis = destaque;
-    this.plates = pratos;
+    this.titulo = titulo;
+    this.destacado = destacado;
+    this.tipo = tipo;
+    this.avaliacao = avaliacao;
+    this.descricao = descricao;
+    this.capa = capa;
+    this.cardapio = cardapio;
   }
 }
 

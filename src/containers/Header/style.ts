@@ -9,11 +9,22 @@ type Props = {
   size: boolean
 }
 
-export const HeaderComponent = styled.header`
+type ConteinerProps = {
+  direction: string
+}
+
+export const HeaderComponent = styled.header<Props>`
   background-image: url(${bgHeader});
   display: flex;
-  height: 352px;
+  height: ${props => props.size ? '352px' : '186px'};
+  justify-content: center;
   align-items: center;
+
+  .container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
 `
 
 export const HeadTitle = styled.h1<Props>`
@@ -31,4 +42,18 @@ export const HeadLink = styled(Link)`
 
 export const HeadBrand = styled(Link)`
   text-decoration: none;
+`
+
+export const Container = styled.div<ConteinerProps>`
+  display: flex;
+  flex-direction: ${props => props.direction};
+  justify-content: space-between;
+  align-items: center;
+  gap: 138px;
+`
+
+export const Row = styled.div`
+  display: flex;
+  justify-content: center;
+  flex: 1;
 `
