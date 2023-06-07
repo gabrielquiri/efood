@@ -13,6 +13,19 @@ export const Banner = styled.div<BannerProps>`
   background-position: center;
   background-size: cover;
   height: 280px;
+  
+  .modal {
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+  }
+
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+  }
 `
 
 export const BannerContainer = styled.div`

@@ -4,21 +4,31 @@ import { Link } from 'react-router-dom'
 
 import { colors } from '../../style'
 
+type Props = {
+  tipo: boolean
+}
+
 export const CardComponent = styled.div`
   position: relative;
 `
 
-export const CardHead = styled.div`
-  height: 217px;
+export const CardHead = styled.div<Props>`
+  height: ${props => props.tipo ? '217px' : '167px'};
+  width: 100%;
+  img {
+    width: 100%;
+    height: ${props => props.tipo ? '217px' : '167px'};
+    object-fit: cover;
+  }
 `
-export const CardBody = styled.div`
-  height: 182px;
+export const CardBody = styled.div<Props>`
+  height: ${props => props.tipo ? '181px' : '214px'};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 8px;
-  background-color: ${colors.white};
-  color: ${colors.colorDark};
+  background-color: ${props => props.tipo ? colors.white : colors.colorDark};
+  color: ${props => props.tipo ? colors.colorDark : colors.colorWhite};
   border: 1px solid ${colors.colorDark};
   border-top: none;
 `

@@ -1,33 +1,20 @@
-import Container from "../Container"
-import { ListContainer, Card } from './style'
+import { List } from './style'
+import { CardPlates } from '../../components/Card'
 
-import { colors } from "../../style"
+import Plate from '../../models/Plates'
 
-import Pratos from '../../models/Plates'
-
-type PropPlates = {
-  items?: Pratos[]
+type Props = {
+  items: Plate[]
 }
 
-const Plates = ({ items }: PropPlates) => {
+const RestaurantsList = ({ items }: Props) => {
   return (
-    <Container direction="columns" customStyle={{backgroundColor: colors.bgColor}}>
-      <Container direction="columns" customStyle={{
-        width: '100%',
-        maxWidth: '1024px',
-        margin: '0 auto'
-      }}>
-        <ListContainer>
-          {items?.map(p => <Card key={p.id}>
-            <img src={p.image} alt="Prato" />
-            <h4>{p.name}</h4>
-            <p>{p.description}</p>
-            <button type="button">Adicionar ao carrinho</button>
-          </Card>)}
-        </ListContainer>
-      </Container>
-    </Container>
+    <div>
+      <List>
+        {items.map(item => <CardPlates key={item.id} content={item}/>)}
+      </List>
+    </div>
   )
 }
 
-export default Plates
+export default RestaurantsList

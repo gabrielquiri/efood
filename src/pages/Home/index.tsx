@@ -1,24 +1,29 @@
-import Container from "../../containers/Container"
+import { useEffect, useState } from 'react'
+
 import Header from '../../containers/Header'
-import RestaurantsList from '../../containers/RestaurantsList'
+import List from '../../containers/Lista'
 import Footer from '../../containers/Footer'
 
-const bodyContainer = {
-  innerWidth: "100%",
-  maxWidth: "1024px",
-  margin: "0 auto"
-}
+const Home = () => {
+  const [restaurantes, setRestaurante] = useState([])
 
-const Home = () => (
-  <>
-    <Header tipo='home'/>
-    <Container direction="column" customStyle={ bodyContainer }>
-        <Container direction="row">
-          <RestaurantsList />
-        </Container>
-    </Container>
-    <Footer />
-  </>
-)
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+    .then((res)=> (res.json()))
+    .then((res)=> (setRestaurante(res)))
+  }, [])
+
+  console.log(restaurantes)
+
+  return (
+    <>
+      <Header tipo='home'/>
+      <div className="container">
+        <List items={restaurantes} />
+      </div>
+      <Footer />
+    </>
+  )
+}
 
 export default Home
