@@ -6,17 +6,17 @@ import bgHeader from '../../assets/bg-header.png'
 import { colors } from '../../style'
 
 type Props = {
-  size: boolean
+  size: string
 }
 
-type ConteinerProps = {
+type ContainerProps = {
   direction: string
 }
 
 export const HeaderComponent = styled.header<Props>`
   background-image: url(${bgHeader});
   display: flex;
-  height: ${props => props.size ? '352px' : '186px'};
+  height: ${props => props.size === 'true' ? '352px' : '186px'};
   justify-content: center;
   align-items: center;
 
@@ -30,7 +30,7 @@ export const HeaderComponent = styled.header<Props>`
 export const HeadTitle = styled.h1<Props>`
   color: ${ colors.colorDark };
   font-weight: 900;
-  font-size: ${props => props.size ? '36px' : '18px'};
+  font-size: ${props => props.size === 'true' ? '36px' : '18px'};
 `
 
 export const HeadLink = styled(Link)`
@@ -44,7 +44,7 @@ export const HeadBrand = styled(Link)`
   text-decoration: none;
 `
 
-export const Container = styled.div<ConteinerProps>`
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: ${props => props.direction};
   justify-content: space-between;

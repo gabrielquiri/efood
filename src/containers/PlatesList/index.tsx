@@ -7,7 +7,7 @@ type Props = {
   items: Plate[]
 }
 
-const RestaurantsList = ({ items }: Props) => {
+const RestaurantList = ({ items }: Props) => {
   return (
     <div>
       <List>
@@ -17,4 +17,4 @@ const RestaurantsList = ({ items }: Props) => {
   )
 }
 
-export default RestaurantsList
+export default RestaurantList

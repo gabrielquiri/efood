@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Banner, BannerText } from './style'
@@ -7,35 +6,29 @@ import Header from '../../containers/Header'
 import List from '../../containers/PlatesList'
 import Footer from '../../containers/Footer'
 
-import Restaurants from '../../models/Restaurants'
+import { useGetARestaurantQuery } from '../../service/fakeApi'
 
 const Perfil = () => {
   const { id } = useParams()
-  const [pratos, setPratos] = useState<Restaurants>()
+  const {data: retaurante} = useGetARestaurantQuery(id ? id : '')
   
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-    .then((res) => (res.json()))
-    .then((res) => (setPratos(res)))
-  }, [id])
-  
-  if(!pratos){
+  if(!retaurante){
     return(<h1>'Loading Data ...'</h1>)
   }
 
   return (
     <div>
       <Header tipo='perfil'/>
-      <Banner img={pratos.capa}>
+      <Banner img={retaurante.capa}>
         <div className="modal">
         <div className="container">
-          <BannerText>{pratos.tipo}</BannerText>
-          <BannerText><span>{pratos.titulo}</span></BannerText>
+          <BannerText>{retaurante.tipo}</BannerText>
+          <BannerText><span>{retaurante.titulo}</span></BannerText>
         </div>
         </div>
       </Banner>
       <div className="container">
-        <List items={pratos.cardapio}/>
+        <List items={retaurante.cardapio}/>
       </div>
       <Footer />
     </div>

@@ -23,10 +23,10 @@ type CardRProps = {
 export const CardRestaurants = ({ content }: CardRProps) => {
   return (
       <CardComponent>
-      <CardHead tipo={true}>
+      <CardHead tipo={'true'}>
         <img src={content.capa} alt="Image Card" />
       </CardHead>
-      <CardBody tipo={true}>
+      <CardBody tipo={'true'}>
         <BodyTitle>
           <Title>{content.titulo}</Title>
           <Rate>
@@ -56,10 +56,10 @@ type CardPProps = {
 export const CardPlates = ({ content }: CardPProps) => {
   return (
       <CardComponent>
-      <CardHead tipo={false}>
+      <CardHead tipo={'false'}>
         <img src={content.foto} alt="Image Card" />
       </CardHead>
-      <CardBody tipo={false}>
+      <CardBody tipo={'false'}>
         <BodyTitle>
           <Title>{content.nome}</Title>
         </BodyTitle>

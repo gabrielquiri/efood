@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { colors } from '../../style'
 
 type Props = {
-  tipo: boolean
+  tipo: string
 }
 
 export const CardComponent = styled.div`
@@ -13,22 +13,22 @@ export const CardComponent = styled.div`
 `
 
 export const CardHead = styled.div<Props>`
-  height: ${props => props.tipo ? '217px' : '167px'};
+  height: ${props => props.tipo === 'true' ? '217px' : '167px'};
   width: 100%;
   img {
     width: 100%;
-    height: ${props => props.tipo ? '217px' : '167px'};
+    height: ${props => props.tipo === 'true' ? '217px' : '167px'};
     object-fit: cover;
   }
 `
 export const CardBody = styled.div<Props>`
-  height: ${props => props.tipo ? '181px' : '214px'};
+  height: ${props => props.tipo === 'true' ? '181px' : '214px'};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 8px;
-  background-color: ${props => props.tipo ? colors.white : colors.colorDark};
-  color: ${props => props.tipo ? colors.colorDark : colors.colorWhite};
+  background-color: ${props => props.tipo === 'true' ? colors.white : colors.colorDark};
+  color: ${props => props.tipo === 'true' ? colors.colorDark : colors.colorWhite};
   border: 1px solid ${colors.colorDark};
   border-top: none;
 `
