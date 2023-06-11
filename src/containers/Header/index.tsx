@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import { 
   HeaderComponent, 
   HeadTitle, 
@@ -8,14 +10,19 @@ import {
 
 import Logo from '../../assets/logo.png'
 
+import { interruptor } from '../../store/reducer/pedidos'
+import { RootState } from '../../store'
+
 type Props = {
   tipo: 'perfil' | 'home'
 }
 
 const Header = ({ tipo }: Props) => {
+  const dispatch = useDispatch()
+  const { items: pedidos } = useSelector((state: RootState) => state.pedido)
   if(tipo === 'perfil'){
     return (
-      <HeaderComponent size={false}>
+      <HeaderComponent size="false">
         <div className="container">
           <Container direction="row">
             <Row>
@@ -27,7 +34,10 @@ const Header = ({ tipo }: Props) => {
               </HeadBrand>
             </Row>
             <Row>
-            <HeadTitle size={false}>0 produto(s) no carrinho</HeadTitle>
+            <HeadTitle className="click" size="false" 
+            onClick={() => dispatch(interruptor(true))}>
+              {pedidos.length} produto(s) no carrinho
+            </HeadTitle>
             </Row>
           </Container>
         </div>
@@ -35,13 +45,13 @@ const Header = ({ tipo }: Props) => {
     )
   }
   return (
-  <HeaderComponent size={true}>
+  <HeaderComponent size="true">
     <div className="container">
       <Container direction="column">
         <HeadBrand to={'/'}>
           <img src={Logo} alt="EFood" />
         </HeadBrand>
-        <HeadTitle size={true}>Viva experiências gastronómicas no conforto da sua casa</HeadTitle>
+        <HeadTitle size="true">Viva experiências gastronómicas no conforto da sua casa</HeadTitle>
       </Container>
     </div>
   </HeaderComponent>
