@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Modal, CarrinhoBody, CardCarrinho, Button } from './style'
+import { Modal, CarrinhoBody, CardCarrinho, Button, Dump } from './style'
 
 import { RootState } from '../../store'
 import { remover, interruptor } from '../../store/reducer/pedidos'
@@ -21,19 +21,26 @@ const Carrinho = () => {
     (total, prato) => total + prato.preco,
     0
   )
-
+  
+  const removerPedido = (id: number) => {
+    console.log(id)
+    dispatch(remover(id))
+    dispatch(interruptor(false))
+  }
   return(
     <Modal switch={modal ? 'grid' : 'none'}>
       <div onClick={() => dispatch(interruptor(false))}></div>
       <CarrinhoBody>
         {pratos.map(prato =>  
-          <CardCarrinho>
+          <CardCarrinho key={prato.id}>
             <img src={prato.foto} alt={prato.nome} />
             <div className='cardbody'>
               <b>{prato.nome}</b>
               <p>{moneyFormatter.format(prato.preco)}</p>
             </div>
-            <img src={Lixeira} alt="del" className='dunp' onClick={() => dispatch(remover(prato.id))}/>
+            <Dump onClick={() => removerPedido(prato.id)}>
+              <img src={Lixeira} alt="del" />
+            </Dump>
           </CardCarrinho>
           )}
         <div className="total">

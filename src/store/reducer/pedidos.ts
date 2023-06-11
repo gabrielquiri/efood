@@ -24,7 +24,7 @@ const pedidoSlice = createSlice({
       }
     },
     remover: (state, action: PayloadAction<number>) => {
-      const carrinho = state.items.filter(item => item.id === action.payload)
+      const carrinho = state.items.filter(item => item.id !== action.payload)
       state.items = carrinho
     },
     interruptor: (state, action: PayloadAction<boolean>) =>{
