@@ -36,13 +36,13 @@ export const CardRestaurants = ({ content }: CardRProps) => {
         </BodyTitle>
         <Paragraph>{content.descricao}</Paragraph>
         <div>
-          <Button>
-          <LinkButton to={`restaurant/${content.id}`}>Saiba Mais</LinkButton>
+          <Button tipo={'true'}>
+            <LinkButton to={`restaurant/${content.id}`}>Saiba Mais</LinkButton>
           </Button>
         </div>
         <Destaques>
-          {content.destacado ? <Button disabled >Destaque da semana</Button> : <></>}
-          <Button disabled >{content.tipo}</Button>
+          {content.destacado ? <Button disabled tipo={'true'}>Destaque da semana</Button> : <></>}
+          <Button disabled tipo={'true'}>{content.tipo}</Button>
         </Destaques>
       </CardBody>
     </CardComponent>  
@@ -50,10 +50,11 @@ export const CardRestaurants = ({ content }: CardRProps) => {
 }
 
 type CardPProps = {
-  content: Plate
+  content: Plate,
+  state: () => void
 }
 
-export const CardPlates = ({ content }: CardPProps) => {
+export const CardPlates = ({ content, state }: CardPProps) => {
   return (
       <CardComponent>
       <CardHead tipo={'false'}>
@@ -65,8 +66,8 @@ export const CardPlates = ({ content }: CardPProps) => {
         </BodyTitle>
         <Paragraph>{content.descricao}</Paragraph>
         <div>
-          <Button>
-            <LinkButton to={`restaurant/${content.id}`}>Saiba Mais</LinkButton>
+          <Button tipo={'false'} onClick={state}>
+            <p>Saiba Mais</p>
           </Button>
         </div>
       </CardBody>

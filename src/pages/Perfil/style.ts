@@ -6,6 +6,10 @@ type BannerProps = {
   img?: string
 }
 
+export const PerfilContainer = styled.div`
+  position: relative
+`
+
 export const Banner = styled.div<BannerProps>`
   width: 100%;
   background-image: url(${props => props.img});
@@ -13,7 +17,7 @@ export const Banner = styled.div<BannerProps>`
   background-position: center;
   background-size: cover;
   height: 280px;
-  
+
   .modal {
     background-color: rgba(0,0,0,0.5);
     height: 100%;
@@ -25,6 +29,7 @@ export const Banner = styled.div<BannerProps>`
     flex-direction: column;
     justify-content: space-between;
     align-items: space-between;
+    padding: 16px 0;
   }
 `
 

@@ -22,7 +22,7 @@ export const CardHead = styled.div<Props>`
   }
 `
 export const CardBody = styled.div<Props>`
-  height: ${props => props.tipo === 'true' ? '181px' : '214px'};
+  height: ${props => props.tipo === 'true' ? '181px' : '171px'};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,8 +43,10 @@ export const Title = styled.h5`
   font-size: 18px;
 `
 export const Paragraph = styled.p`
+  margin: 8px 0;
   font-weight: 400;
   font-size: 14px;
+  overflow: hidden;
 `
 
 export const Destaques = styled.div`
@@ -56,11 +58,12 @@ export const Destaques = styled.div`
   right: 0;
 `
 
-export const Button = styled.button`
+export const Button = styled.button<Props>`
   border: none;
+  width: ${props => props.tipo === 'true' ? 'auto' : '100%'};
   padding: 6px 4px;
-  background-color: ${colors.colorDark};
-  color: ${colors.colorWhite};
+  background-color: ${props => props.tipo === 'true' ? colors.colorDark : colors.colorWhite};
+  color: ${props => props.tipo === 'true' ? colors.colorWhite : colors.colorDark};
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;

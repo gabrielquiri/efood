@@ -25,6 +25,10 @@ export const HeaderComponent = styled.header<Props>`
     max-width: 1024px;
     margin: 0 auto;
   }
+  
+  .click {
+    cursor: pointer;
+  }
 `
 
 export const HeadTitle = styled.h1<Props>`

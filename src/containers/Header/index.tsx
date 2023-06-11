@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from 'react-redux'
+
 import { 
   HeaderComponent, 
   HeadTitle, 
@@ -8,11 +10,16 @@ import {
 
 import Logo from '../../assets/logo.png'
 
+import { interruptor } from '../../store/reducer/pedidos'
+import { RootState } from '../../store'
+
 type Props = {
   tipo: 'perfil' | 'home'
 }
 
 const Header = ({ tipo }: Props) => {
+  const dispatch = useDispatch()
+  const { items: pedidos } = useSelector((state: RootState) => state.pedido)
   if(tipo === 'perfil'){
     return (
       <HeaderComponent size="false">
@@ -27,7 +34,10 @@ const Header = ({ tipo }: Props) => {
               </HeadBrand>
             </Row>
             <Row>
-            <HeadTitle size="false">0 produto(s) no carrinho</HeadTitle>
+            <HeadTitle className="click" size="false" 
+            onClick={() => dispatch(interruptor(true))}>
+              {pedidos.length} produto(s) no carrinho
+            </HeadTitle>
             </Row>
           </Container>
         </div>
