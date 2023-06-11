@@ -64,12 +64,15 @@ export const CardCarrinho = styled.div`
     display: flex;
     justify-content: space-between;
   }
+`
 
-  .dunp {
+export const Dump = styled.div`
+  cursor: pointer;
+  
+  img {
     height: 16px;
     position: absolute;
     right: 8px;
     top: 8px;
   }
 `
-
