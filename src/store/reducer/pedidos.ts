@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import Restaurants from "../../models/Restaurants";
 import Plate from "../../models/Plates";
 
 interface PedidoSlice {
