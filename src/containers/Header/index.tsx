@@ -10,7 +10,7 @@ import {
 
 import Logo from '../../assets/logo.png'
 
-import { interruptor } from '../../store/reducer/pedidos'
+import { interrupter } from '../../store/reducer/pedidos'
 import { RootState } from '../../store'
 
 type Props = {
@@ -35,7 +35,7 @@ const Header = ({ tipo }: Props) => {
             </Row>
             <Row>
             <HeadTitle className="click" size="false" 
-            onClick={() => dispatch(interruptor(true))}>
+            onClick={() => dispatch(interrupter(true))}>
               {pedidos.length} produto(s) no carrinho
             </HeadTitle>
             </Row>

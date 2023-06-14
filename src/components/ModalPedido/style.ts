@@ -59,6 +59,10 @@ export const CarrinhoBody = styled.div`
       flex-direction: row;
       gap: 32px;
     }
+
+    .error {
+      border: 1px solid pink;
+    }
   }
 `
 
@@ -86,6 +90,7 @@ export const Button = styled.button`
   background-color: ${colors.colorWhite};
   color: ${colors.colorDark}; 
   font-weight: bold;
+  cursor: pointer;
 ` 
 
 export const CardCarrinho = styled.div`

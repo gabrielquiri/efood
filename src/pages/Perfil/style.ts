@@ -7,7 +7,13 @@ type BannerProps = {
 }
 
 export const PerfilContainer = styled.div`
-  position: relative
+  position: relative;
+
+  .center {
+    display: flex;
+    justify-content: center;
+    margin: 120px 0;
+  } 
 `
 
 export const Banner = styled.div<BannerProps>`

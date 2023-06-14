@@ -1,8 +1,11 @@
+import { FadeLoader } from 'react-spinners'
+
 import Header from '../../containers/Header'
 import List from '../../containers/Lista'
 import Footer from '../../containers/Footer'
 
 import { useGetRestaurantsQuery } from '../../service/fakeApi'
+import { colors } from '../../style'
 
 const Home = () => {
   const { data: restaurantes } = useGetRestaurantsQuery()
@@ -23,7 +26,9 @@ const Home = () => {
     <div>
       <Header tipo='home'/>
       <div className="container">
-        <h3>Loading ...</h3>
+        <div className="center">
+          <FadeLoader color={colors.colorDark} />
+        </div>
       </div>
       <Footer />
     </div>

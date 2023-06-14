@@ -5,7 +5,7 @@ import { CardModal, ModalContainer, CardBody, ButtonClose, CardButton } from "./
 
 import { RootState } from '../../store'
 import { openClose } from '../../store/reducer/modal'
-import { adicionar } from '../../store/reducer/pedidos'
+import { adder } from '../../store/reducer/pedidos'
 
 type Props = {
   plate: Plate
@@ -23,7 +23,7 @@ const Modal = ({ plate }: Props) => {
   })
 
   const pedido = () => {
-    dispatch(adicionar(plate))
+    dispatch(adder(plate))
     dispatch(openClose(false))
   }
 
