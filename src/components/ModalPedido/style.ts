@@ -33,6 +33,52 @@ export const CarrinhoBody = styled.div`
     padding: 16px 0;
     margin-top: 24px;
   }
+
+  > h4 {
+    font-weight: 700;
+    font-size: 16px;
+    color: ${colors.colorWhite};
+  }
+
+  > p {
+    font-weight: 400;
+    font-size: 14px;
+    color: ${colors.colorWhite};
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    color: ${colors.colorWhite};
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+    }
+
+    .error {
+      border: 1px solid pink;
+    }
+  }
+`
+
+export const InputGroup = styled.fieldset`
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  input {
+    width: 100%;
+    padding: 6px 0;
+    border: none;
+    background-color: ${colors.colorWhite};
+  }
 `
 
 export const Button = styled.button`
@@ -43,6 +89,8 @@ export const Button = styled.button`
   padding: 4px 0;
   background-color: ${colors.colorWhite};
   color: ${colors.colorDark}; 
+  font-weight: bold;
+  cursor: pointer;
 ` 
 
 export const CardCarrinho = styled.div`

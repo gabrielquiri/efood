@@ -24,6 +24,11 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+
+    .center {
+      display: flex;
+      justify-content: center;
+    }
   }
 `
 

@@ -1,11 +1,8 @@
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { FadeLoader } from 'react-spinners'
 
-import { 
-  Banner, 
-  BannerText, 
-  PerfilContainer,
-} from './style'
+import * as S from './style'
 
 import Header from '../../containers/Header'
 import List from '../../containers/PlatesList'
@@ -14,32 +11,44 @@ import Modal from '../../components/ModalPedido'
 
 import { useGetARestaurantQuery } from '../../service/fakeApi'
 import { RootState } from '../../store'
+import { colors } from '../../style'
 
 const Perfil = () => {
   const { id } = useParams()
-  const {data: retaurante} = useGetARestaurantQuery(id ? id : '')
-  const { switch: carrinho } = useSelector((state: RootState) => state.pedido)
-  if(!retaurante){
-    return(<h1>'Loading Data ...'</h1>)
+  const {data: restaurant} = useGetARestaurantQuery(id ? id : '')
+  const { switch: isOpen } = useSelector((state: RootState) => state.pedido)
+  if(!restaurant){
+    return(
+      <S.PerfilContainer>
+        <Header tipo='perfil'/>
+        <div className='container'>
+          <div className='center'>
+            <FadeLoader color={colors.colorDark}/>
+          </div>
+        </div>
+        <Footer />
+        {isOpen ? <Modal /> : <div></div>}
+      </S.PerfilContainer>
+    )
   }
 
   return (
-    <PerfilContainer>
+    <S.PerfilContainer>
       <Header tipo='perfil'/>
-      <Banner img={retaurante.capa}>
+      <S.Banner img={restaurant.capa}>
         <div className="modal">
         <div className="container">
-          <BannerText>{retaurante.tipo}</BannerText>
-          <BannerText><span>{retaurante.titulo}</span></BannerText>
+          <S.BannerText>{restaurant.tipo}</S.BannerText>
+          <S.BannerText><span>{restaurant.titulo}</span></S.BannerText>
         </div>
         </div>
-      </Banner>
+      </S.Banner>
       <div className="container">
-        <List items={retaurante.cardapio}/>
+        <List items={restaurant.cardapio}/>
       </div>
       <Footer />
-      {carrinho ? <Modal /> : <div></div>}
-    </PerfilContainer>
+      {isOpen ? <Modal /> : <div></div>}
+    </S.PerfilContainer>
   )
 }
 

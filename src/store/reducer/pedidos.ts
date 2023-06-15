@@ -2,21 +2,21 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import Plate from "../../models/Plates";
 
-interface PedidoSlice {
+interface PurchaseSlice {
   items: Plate[],
   switch: boolean
 }
 
-const initialState: PedidoSlice = {
+const initialState: PurchaseSlice = {
   items: [],
   switch: false,
 }
 
-const pedidoSlice = createSlice({
+const purchaseSlice = createSlice({
   name: 'pedido',
   initialState,
   reducers: {
-    adicionar: (state, action: PayloadAction<Plate>) => {
+    adder: (state, action: PayloadAction<Plate>) => {
       if(state.items.some(item => item.id === action.payload.id)){
         alert("Prato já inserido no Carrinho !")
       }else {
@@ -24,15 +24,18 @@ const pedidoSlice = createSlice({
       }
     },
     remover: (state, action: PayloadAction<number>) => {
-      const carrinho = state.items.filter(item => item.id !== action.payload)
-      state.items = carrinho
+      const card = state.items.filter(item => item.id !== action.payload)
+      state.items = card
     },
-    interruptor: (state, action: PayloadAction<boolean>) =>{
+    interrupter: (state, action: PayloadAction<boolean>) =>{
       state.switch = action.payload;
+    },
+    clean: (state) =>{
+      state.items = [];
     }
   }
 }) 
 
-export const { adicionar, remover, interruptor } = pedidoSlice.actions
+export const { adder, remover, interrupter, clean } = purchaseSlice.actions
 
-export default pedidoSlice.reducer
+export default purchaseSlice.reducer

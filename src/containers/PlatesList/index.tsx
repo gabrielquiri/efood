@@ -22,7 +22,7 @@ const RestaurantList = ({ items }: Props) => {
   useEffect(() => {
     const item = items.filter(prato => prato.id === 1)
     setPrato(item[0])
-  },[])
+  },[items])
 
   const openModal = (prato: Plate) => {
     dispatch(openClose(true))
