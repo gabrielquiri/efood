@@ -26,6 +26,7 @@ const Card = () => {
   const {switch: modal, items: plates} = useSelector((state: RootState) => state.pedido)
   const { checkout } = useSelector((state: RootState) => state.payment)
   const [ makeCheckout, { isSuccess, isLoading, data } ] = useMakeCheckoutMutation()
+  let i = 0
 
   const moneyFormatter = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -40,7 +41,6 @@ const Card = () => {
   
   const removerPedido = (id: number) => {
     dispatch(remover(id))
-    dispatch(interrupter(false))
   }
   
   const myForm = useFormik({
@@ -119,26 +119,33 @@ const Card = () => {
       })
     }
   })
-  
-  const checkInputHasError = (fieldName: string) => {
-    const isTouched = fieldName in myForm.touched
-    const isInvalid = fieldName in myForm.errors
-    const hasError = isTouched && isInvalid
 
-    if(hasError){
-      toast.error(`O campo ${fieldName} está invalido.`, {
-        duration: 3000,
-        position: 'top-left'
-      })
+  const executeSubmit = () => {
+    checkInputHasError()
+    myForm.handleSubmit
+  }
+
+  const checkInputHasError = () => {
+    for(const field in myForm.touched){
+      if(field in myForm.errors){
+        console.log(field)
+        toast.error(`O campo ${field} está invalido.`, {
+          duration: 3000,
+          position: 'top-left'
+        })
+      }
     }
-    
-    return hasError
   }
 
   const cleaner = () => {
     dispatch(clean())
     dispatch(interrupter(false))
+    dispatch(changeCheckout(0))
     myForm.handleReset
+  }
+
+  const makeKeyId = () => {
+    return i += 1
   }
 
   if(plates.length > 0) {
@@ -156,8 +163,7 @@ const Card = () => {
                         id="receiver" 
                         value={myForm.values.receiver} 
                         onChange={myForm.handleChange}
-                        onBlur={myForm.handleBlur}
-                        className={checkInputHasError("receiver") ? 'error' : ''}/>
+                        onBlur={() => checkInputHasError()}/>
               </S.InputGroup>
               <S.InputGroup>
                 <label htmlFor="address">Endereço</label>
@@ -166,8 +172,7 @@ const Card = () => {
                         id="address" 
                         value={myForm.values.address} 
                         onChange={myForm.handleChange}
-                        onBlur={myForm.handleBlur}
-                        className={checkInputHasError("address") ? 'error' : ''}/>
+                        onBlur={myForm.handleBlur}/>
               </S.InputGroup>
               <S.InputGroup>
                 <label htmlFor="city">Cidade</label>
@@ -176,8 +181,7 @@ const Card = () => {
                         id="city" 
                         value={myForm.values.city} 
                         onChange={myForm.handleChange}
-                        onBlur={myForm.handleBlur}
-                        className={checkInputHasError("city") ? 'error' : ''}/>
+                        onBlur={myForm.handleBlur}/>
               </S.InputGroup>
               <div className="row">
                 <S.InputGroup>
@@ -188,7 +192,6 @@ const Card = () => {
                               value={myForm.values.zipCode} 
                               onChange={myForm.handleChange}
                               onBlur={myForm.handleBlur}
-                              className={checkInputHasError("zipCode") ? 'error' : ''}
                               mask="99999-999"/>
                 </S.InputGroup>
                 <S.InputGroup>
@@ -198,8 +201,7 @@ const Card = () => {
                           id="addressNumber" 
                           value={myForm.values.addressNumber} 
                           onChange={myForm.handleChange}
-                          onBlur={myForm.handleBlur}
-                          className={checkInputHasError("addressNumber") ? 'error' : ''}/>
+                          onBlur={myForm.handleBlur}/>
                 </S.InputGroup>
               </div>
               <S.InputGroup>
@@ -209,8 +211,7 @@ const Card = () => {
                         id="complement" 
                         value={myForm.values.complement} 
                         onChange={myForm.handleChange}
-                        onBlur={myForm.handleBlur}
-                        className={checkInputHasError("addressNumber") ? 'error' : ''}/>
+                        onBlur={myForm.handleBlur}/>
               </S.InputGroup>
             </form>
             <S.Button onClick={() => dispatch(changeCheckout(CheckoutEnum.PAYMENT))}>Continuar com a pagamento</S.Button>
@@ -253,8 +254,7 @@ const Card = () => {
                       id="cardName" 
                       value={myForm.values.cardName} 
                       onChange={myForm.handleChange}
-                      onBlur={myForm.handleBlur}
-                      className={checkInputHasError("cardName") ? 'error' : ''}/>
+                      onBlur={myForm.handleBlur}/>
                   </S.InputGroup>
                   <div className="row">
                     <S.InputGroup>
@@ -266,7 +266,6 @@ const Card = () => {
                         value={myForm.values.cardNumber} 
                         onChange={myForm.handleChange}
                         onBlur={myForm.handleBlur}
-                        className={checkInputHasError("cardNumber") ? 'error' : ''}
                         mask="9999 9999 9999 9999"/>
                     </S.InputGroup>
                     <S.InputGroup>
@@ -278,7 +277,6 @@ const Card = () => {
                         value={myForm.values.cardCode} 
                         onChange={myForm.handleChange}
                         onBlur={myForm.handleBlur}
-                        className={checkInputHasError("cardCode") ? 'error' : ''}
                         mask="999"/>
                     </S.InputGroup>
                   </div>
@@ -292,7 +290,6 @@ const Card = () => {
                         value={myForm.values.expiresMonth} 
                         onChange={myForm.handleChange}
                         onBlur={myForm.handleBlur}
-                        className={checkInputHasError("expiresMonth") ? 'error' : ''}
                         mask="99"/>
                     </S.InputGroup>
                     <S.InputGroup>
@@ -304,11 +301,10 @@ const Card = () => {
                         value={myForm.values.expiresYear} 
                         onChange={myForm.handleChange}
                         onBlur={myForm.handleBlur}
-                        className={checkInputHasError("expiresYear") ? 'error' : ''}
                         mask="9999"/>
                     </S.InputGroup>
                   </div>
-                  <S.Button type="submit" onClick={() => myForm.handleSubmit}>{isLoading ? <HashLoader color={colors.colorDark} /> : "Finalizar pagamento"}</S.Button>
+                  <S.Button type="submit" onClick={() => executeSubmit()}>{isLoading ? <HashLoader color={colors.colorDark} /> : "Finalizar pagamento"}</S.Button>
                 </form>
               <S.Button onClick={() => dispatch(changeCheckout(CheckoutEnum.ADDRESS))}>Voltar para a edição de endereço</S.Button>
               </>
@@ -322,7 +318,7 @@ const Card = () => {
         <div onClick={() => dispatch(interrupter(false))}></div>
         <S.CarrinhoBody>
             {plates.map(plate =>  
-              <S.CardCarrinho key={plate.id}>
+              <S.CardCarrinho key={makeKeyId()}>
                 <img src={plate.foto} alt={plate.nome} />
                 <div className='cardbody'>
                   <b>{plate.nome}</b>

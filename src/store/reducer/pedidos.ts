@@ -17,15 +17,14 @@ const purchaseSlice = createSlice({
   initialState,
   reducers: {
     adder: (state, action: PayloadAction<Plate>) => {
-      if(state.items.some(item => item.id === action.payload.id)){
-        alert("Prato já inserido no Carrinho !")
-      }else {
-        state.items.push(action.payload)
-      }
+      state.items.push(action.payload)
     },
     remover: (state, action: PayloadAction<number>) => {
-      const card = state.items.filter(item => item.id !== action.payload)
-      state.items = card
+      const platePayload = state.items.find(item => item.id === action.payload)
+      if(platePayload){
+        const indexPlatePayload = state.items.indexOf(platePayload)
+        state.items.splice(indexPlatePayload, 1)
+      }
     },
     interrupter: (state, action: PayloadAction<boolean>) =>{
       state.switch = action.payload;
