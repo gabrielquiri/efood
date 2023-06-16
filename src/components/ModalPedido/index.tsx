@@ -125,10 +125,12 @@ const Card = () => {
     const isInvalid = fieldName in myForm.errors
     const hasError = isTouched && isInvalid
 
-    toast.error(`O campo ${fieldName} está invalido.`, {
-      duration: 3000,
-      position: 'top-left'
-    })
+    if(hasError){
+      toast.error(`O campo ${fieldName} está invalido.`, {
+        duration: 3000,
+        position: 'top-left'
+      })
+    }
     
     return hasError
   }
