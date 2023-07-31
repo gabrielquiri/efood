@@ -34,7 +34,7 @@ export const CardRestaurants = ({ content }: CardRProps) => {
             <img src={Star} alt="Star Rate" />
           </Rate>
         </BodyTitle>
-        <Paragraph>{content.descricao}</Paragraph>
+        <Paragraph>{content.descricao}</Paragraph> 
         <div>
           <Button tipo={'true'}>
             <LinkButton to={`restaurant/${content.id}`}>Saiba Mais</LinkButton>
