@@ -61,7 +61,7 @@ export const Destaques = styled.div`
 export const Button = styled.button<Props>`
   border: none;
   width: ${props => props.tipo === 'true' ? 'auto' : '100%'};
-  padding: 22px 24px;
+  padding: 6px 4px;
   background-color: ${props => props.tipo === 'true' ? colors.colorDark : colors.colorWhite};
   color: ${props => props.tipo === 'true' ? colors.colorWhite : colors.colorDark};
   font-weight: 700;
