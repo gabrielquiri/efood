@@ -65,7 +65,7 @@ export const Button = styled.button<Props>`
   background-color: ${props => props.tipo === 'true' ? colors.colorDark : colors.colorWhite};
   color: ${props => props.tipo === 'true' ? colors.colorWhite : colors.colorDark};
   font-weight: 700;
-  font-size: 14px;
+  font-size: 54px;
   cursor: pointer;
 `
 
