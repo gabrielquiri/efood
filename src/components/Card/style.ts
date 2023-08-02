@@ -16,7 +16,7 @@ export const CardHead = styled.div<Props>`
   height: ${props => props.tipo === 'true' ? '217px' : '167px'};
   width: 100%;
   img {
-    width: 90%;
+    width: 100%;
     height: ${props => props.tipo === 'true' ? '217px' : '167px'};
     object-fit: cover;
   }
