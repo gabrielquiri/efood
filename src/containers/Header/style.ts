@@ -37,6 +37,7 @@ export const HeadTitle = styled.h1<Props>`
   font-size: ${props => props.size === 'true' ? '36px' : '18px'};
   max-width: 540px;
   align-items: center;
+  text-align: center;
 `
 
 export const HeadLink = styled(Link)`
