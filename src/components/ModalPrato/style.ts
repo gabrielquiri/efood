@@ -31,7 +31,6 @@ export const CardModal = styled.div`
   
   img {
     height: 280px;
-    width: 90%;
   }
 `
 
